@@ -1,10 +1,20 @@
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const navbar = document.querySelector('.navbar');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
 });
 
 // Close mobile menu when clicking on a link
@@ -32,23 +42,25 @@ const roastMessages = document.querySelectorAll('.roast-message');
 let currentMessage = 0;
 
 function rotateMessages() {
+  // Add exiting animation
+  roastMessages[currentMessage].classList.add('exiting');
   roastMessages[currentMessage].classList.remove('active');
-  currentMessage = (currentMessage + 1) % roastMessages.length;
-  roastMessages[currentMessage].classList.add('active');
+  
+  setTimeout(() => {
+    roastMessages[currentMessage].classList.remove('exiting');
+    currentMessage = (currentMessage + 1) % roastMessages.length;
+    
+    // Add entering animation
+    roastMessages[currentMessage].classList.add('entering');
+    setTimeout(() => {
+      roastMessages[currentMessage].classList.remove('entering');
+      roastMessages[currentMessage].classList.add('active');
+    }, 100);
+  }, 300);
 }
 
-// Start rotating messages every 3 seconds
-setInterval(rotateMessages, 3000);
-
-// Navbar background on scroll
-window.addEventListener('scroll', () => {
-  const navbar = document.querySelector('.navbar');
-  if (window.scrollY > 50) {
-    navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-  } else {
-    navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-  }
-});
+// Start rotating messages every 4 seconds
+setInterval(rotateMessages, 4000);
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -59,71 +71,72 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('animated');
     }
   });
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.step, .feature-card, .team-member').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'all 0.6s ease';
+document.querySelectorAll('.step, .feature-card, .team-member').forEach((el, index) => {
+  el.classList.add('animate-on-scroll');
+  el.style.transitionDelay = `${index * 0.1}s`;
   observer.observe(el);
 });
 
-// Add some interactive effects
-document.querySelectorAll('.feature-card, .team-member, .step').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.transform = 'translateY(-10px) scale(1.02)';
-  });
-  
-  card.addEventListener('mouseleave', function() {
-    this.style.transform = 'translateY(0) scale(1)';
-  });
+// Enhanced glass card effects
+document.querySelectorAll('.glass-card, .feature-card, .team-member').forEach(card => {
+  card.classList.add('glass-card');
 });
 
 // CTA button click tracking (you can replace this with actual analytics)
 document.querySelector('.cta-button').addEventListener('click', function(e) {
-  // Add a little animation feedback
-  this.style.transform = 'scale(0.95)';
-  setTimeout(() => {
-    this.style.transform = 'scale(1)';
-  }, 150);
-  
   console.log('APK download initiated');
+  
+  // Add ripple effect
+  const ripple = document.createElement('span');
+  const rect = this.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+  
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  ripple.classList.add('ripple');
+  
+  this.appendChild(ripple);
+  
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
 });
 
-// Add some particle effects to the hero section
-function createParticle() {
-  const particle = document.createElement('div');
-  particle.style.position = 'absolute';
-  particle.style.width = '4px';
-  particle.style.height = '4px';
-  particle.style.background = 'rgba(255, 107, 53, 0.6)';
-  particle.style.borderRadius = '50%';
-  particle.style.pointerEvents = 'none';
-  particle.style.left = Math.random() * 100 + '%';
-  particle.style.top = '100%';
-  particle.style.zIndex = '1';
-  
+// Smooth parallax effect for hero background
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
   const hero = document.querySelector('.hero');
-  hero.style.position = 'relative';
-  hero.appendChild(particle);
-  
-  // Animate particle
-  const animation = particle.animate([
-    { transform: 'translateY(0) scale(0)', opacity: 0 },
-    { transform: 'translateY(-100px) scale(1)', opacity: 1 },
-    { transform: 'translateY(-200px) scale(0)', opacity: 0 }
-  ], {
-    duration: 3000,
-    easing: 'ease-out'
-  });
-  
-  animation.onfinish = () => particle.remove();
-}
+  if (hero) {
+    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+  }
+});
 
-// Create particles periodically
-setInterval(createParticle, 2000);
+// Add stagger animation to grid items
+const observeStagger = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const children = entry.target.children;
+      Array.from(children).forEach((child, index) => {
+        setTimeout(() => {
+          child.classList.add('animated');
+        }, index * 100);
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.steps, .features-grid, .team-grid').forEach(grid => {
+  Array.from(grid.children).forEach(child => {
+    child.classList.add('animate-on-scroll');
+  });
+  observeStagger.observe(grid);
+});
