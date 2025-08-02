@@ -4,10 +4,203 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>RoastMe - We don't judge. We roast.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="app">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <span class="logo-text">RoastMe</span>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#team" class="nav-link">Team</a></li>
+          </ul>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="hero" class="hero">
+        <div class="hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="gradient-text">RoastMe</span>
+            </h1>
+            <p class="hero-subtitle">We don't judge. We roast.</p>
+            <p class="hero-description">
+              Get brutally honest about your phone addiction. Download our APK and let us roast your digital habits.
+            </p>
+            <a href="/download/roastme.apk" class="cta-button">
+              <span>Download APK</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7,10 12,15 17,10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </a>
+          </div>
+          <div class="hero-phone">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <div class="roast-message active">
+                  <p>"You opened Instagram 43 times today. You okay?"</p>
+                </div>
+                <div class="roast-message">
+                  <p>"90% of your screen time is past midnight. You a vampire?"</p>
+                </div>
+                <div class="roast-message">
+                  <p>"You said you'd study. But TikTok says otherwise."</p>
+                </div>
+                <div class="roast-message">
+                  <p>"Your phone usage could power a small village."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="how-it-works">
+        <div class="container">
+          <h2 class="section-title">How It Works</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7,10 12,15 17,10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+              <h3>Install the APK</h3>
+              <p>Download and install our roasting machine on your Android device</p>
+            </div>
+            <div class="step">
+              <div class="step-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1v6m0 0l4-4m-4 4L8 3"/>
+                  <path d="M12 23v-6m0 0l4 4m-4-4l-4 4"/>
+                  <path d="M20 12h-6m0 0l4-4m-4 4l4 4"/>
+                  <path d="M4 12h6m0 0L6 8m4 4l-4 4"/>
+                </svg>
+              </div>
+              <h3>Give Screen Time Permission</h3>
+              <p>Allow us to peek at your digital habits (we promise not to judge... much)</p>
+            </div>
+            <div class="step">
+              <div class="step-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3>Get Roasted</h3>
+              <p>Receive personalized roasts about your phone addiction and digital behavior</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features">
+        <div class="container">
+          <h2 class="section-title">Features</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3>Tracks App Usage</h3>
+              <p>Monitors your app usage patterns and screen time habits</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🧠</div>
+              <h3>Generates Smart Roasts</h3>
+              <p>AI-powered roasting based on your actual digital behavior</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3>Privacy-First</h3>
+              <p>No data sent to servers. Your embarrassing habits stay on your device</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🤡</div>
+              <h3>Custom Roast Levels</h3>
+              <p>Choose from gentle teasing to brutal honesty</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⏰</div>
+              <h3>Real-Time Analysis</h3>
+              <p>Get roasted as your bad habits happen in real-time</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Usage Insights</h3>
+              <p>Detailed breakdowns of your digital addiction patterns</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section id="team" class="team">
+        <div class="container">
+          <h2 class="section-title">Built by the RoastMasters</h2>
+          <div class="team-grid">
+            <div class="team-member">
+              <div class="member-avatar">
+                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kushal">
+              </div>
+              <h3>Kushal</h3>
+              <p>Dev</p>
+            </div>
+            <div class="team-member">
+              <div class="member-avatar">
+                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Om">
+              </div>
+              <h3>Om</h3>
+              <p>UI/UX</p>
+            </div>
+            <div class="team-member">
+              <div class="member-avatar">
+                <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shalini">
+              </div>
+              <h3>Shalini</h3>
+              <p>Roast Writer</p>
+            </div>
+            <div class="team-member">
+              <div class="member-avatar">
+                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Varnit">
+              </div>
+              <h3>Varnit</h3>
+              <p>Product</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <p>This is a parody app. Don't take it seriously 😎</p>
+          <div class="footer-links">
+            <a href="mailto:roastmasters@roastme.app">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
